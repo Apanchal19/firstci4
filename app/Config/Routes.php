@@ -29,7 +29,51 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+$routes->get('/home', 'Home::index');
 $routes->get('/', 'Home::index');
+
+$routes->get('/shop', 'Shop::index');
+
+// Define a route with a placeholder for the product type
+$routes->get('/shop/product/(:segment)', 'Shop::product/$1');
+$routes->get('/shop/product', 'Shop::product');
+$routes->get('/shop/product/(:segment)/(:segment)', 'Shop::product/$1/$2');
+$routes->get('/admin/shop', 'Admin\Shop::index');
+$routes->get('/home/validation', 'Home::validation');
+$routes->get('/admin/shop/product/(:segment)/(:num)', 'Admin\Shop::product/$1/$2');
+
+
+$routes->add('product', 'Shop::product');
+$routes->add('product/(:any)/(:any)', 'Shop::product/$1/$2');
+// $routes->add('blog', function () {
+//     return "<h2>This is a blog</h2>";
+// });
+$routes->add('Blog','Blog::index');
+$routes->add('Blog/post','Blog::post');
+$routes->group('admin', function ($routes){
+    $routes->add('user','Admin\Users::index');
+    $routes->add('users','Admin\Users::getAllUsers');
+    $routes->add('product(:any)/(:any)','Admin\Users::product/$1/$2');
+
+
+    ///Blog Routes
+    $routes->add('blog', 'Admin\Blog::index');
+    $routes->get('blog/new','Admin\Blog::createNew');
+    $routes->post('blog/new','Admin\Blog::saveBlog');
+
+
+
+});
+
+
+
+
+
+
+
+
+
 
 /*
  * --------------------------------------------------------------------
