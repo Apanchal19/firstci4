@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codeigniter 4 Blog</title>
-</head>
-<body>
-<nav>
-    <ul>
-        <li><a href="/blog"></a>Blog</li>
-        <li><a href="/blog/post"></a>Post</li>
-    </ul>
-</nav>
-    <h1>Our Blog</h1>
-</body>
-</html>
+<?= $this->extend('layouts/main') ?>
+
+<?= $this->section('content') ?>
+<h1><?= $title ?></h1>
+
+<div class="row">
+    <?= $this->include('partials/sidebar') ?>
+    <div class="col-12 col-sm-9">
+        <div class="row">
+        <?php foreach ($posts as $post) : ?>
+            <?= view_cell('\App\libraries\Blog::postItem',['title'=> $post]) ?> 
+        <?php endforeach; ?>
+    </div>
+    </div>
+
+</div>
+<?= $this->endSection() ?>

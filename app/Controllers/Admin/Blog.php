@@ -7,10 +7,7 @@ class Blog extends BaseController
 {
     public function index ()
     {
-        echo view("header");
-        echo view('blog');
-        echo view("footer");
-        
+        echo '<h2>A list of log posts</h2>';
     }
 
     public function createNew(){

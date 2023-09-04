@@ -49,8 +49,13 @@ $routes->add('product/(:any)/(:any)', 'Shop::product/$1/$2');
 // $routes->add('blog', function () {
 //     return "<h2>This is a blog</h2>";
 // });
-$routes->add('Blog','Blog::index');
-$routes->add('Blog/post','Blog::post');
+
+$routes->add('blog','Blog::index');
+$routes->add('blog/post','Blog::post');
+
+$routes->add('blog/new','Blog::new');
+
+
 $routes->group('admin', function ($routes){
     $routes->add('user','Admin\Users::index');
     $routes->add('users','Admin\Users::getAllUsers');
